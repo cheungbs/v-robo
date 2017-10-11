@@ -108,13 +108,13 @@ def load_labels(file_name):
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='Labeling, Resuming, Checking mp4 lables.')
-  parser.add_argument('--path', default='./', help='video file directory.')
-  parser.add_argument('--name', default='20170930-064841_0', help='video file name.')
+  parser.add_argument('--path'  , default='./', help='video file directory.')
+  parser.add_argument('--name'  , default='20170930-064841_0', help='video file name.')
   parser.add_argument('--iframe', default=0, type=int, help='nav to the iframe-th video frame.' )
-  parser.add_argument('--save', action='store_true', help='save the labels.')
+  parser.add_argument('--save'  , action='store_true', help='save the labels.')
   parser.add_argument('--resume', action='store_true', help='in resume mode.')
-  parser.add_argument('--check', action='store_true', help='in check mode.')
-  parser.add_argument('--nav', action='store_true', help='nav for labeling.')
+  parser.add_argument('--check' , action='store_true', help='in check mode.')
+  parser.add_argument('--nav'   , action='store_true', help='nav for labeling.')
   args = parser.parse_args()
 
   cv2.namedWindow('frame')
@@ -187,7 +187,7 @@ if __name__ == '__main__':
 
   tot_frms = len(frames)
   if args.check or args.nav:
-    print('Totally ' + str(tot_frms) + ' Video frames are loaded, use ARROW buttons to navigate videos for labelling.')
+    print('Totally ' + str(tot_frms) + ' Video frames are loaded, use [s], [d], [k], [l] buttons to navigate videos for labelling.')
 
     while True:
       mouseX    = 0
@@ -234,7 +234,7 @@ if __name__ == '__main__':
     while True:
       k = cv2.waitKey(0) & 0xFF
       if k == ord('y') or k == ord('Y'):
-        lname = os.path.join(args.path, args.name)
+        lname = os.path.join(args.path, 'label_' + args.name)
         save_labels(lname, labels)
         print('the labels have been saved successfully.')
         break
